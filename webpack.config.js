@@ -2,6 +2,7 @@ const fs = require("fs")
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries")
+const BundleTracker = require("webpack-bundle-tracker")
 
 const targets = fs
   .readdirSync(path.resolve(__dirname, "theme"))
@@ -44,5 +45,9 @@ module.exports = {
       filename: "[name].css",
     }),
     new FixStyleOnlyEntriesPlugin(),
+    new BundleTracker({
+      path: __dirname,
+      filename: "webpack-stats.json",
+    }),
   ],
 }
