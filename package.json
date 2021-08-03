@@ -10,11 +10,19 @@
     "build": "run-s build:clean build:webpack",
     "build:clean": "rimraf dist",
     "build:webpack": "webpack --mode development",
-    "update:config": "node ./bin/update-config.js"
+    "lint:prettier": "prettier '**/*.{js,json,css,scss,yml,yaml}' --check",
+    "fix:prettier": "prettier '**/*.{js,json,css,scss,yml,yaml}' --write",
+    "update:config": "node ./bin/update-config.js",
+    "prepare": "husky install"
   },
   "watch": {
     "update:config": [
       "./webpack-stats.json"
+    ]
+  },
+  "lint-staged": {
+    "./**/*.{js,json,css,scss,yml,yaml}": [
+      "prettier --write"
     ]
   },
   "dependencies": {
@@ -32,8 +40,11 @@
     "webpack": "^5.47.1"
   },
   "devDependencies": {
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.1",
     "npm-run-all": "^4.1.5",
     "npm-watch": "^0.11.0",
+    "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "strip-json-comments": "^3.1.1",
     "webpack-bundle-tracker": "^1.2.0",

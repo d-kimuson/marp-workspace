@@ -1,5 +1,1 @@
-{
-  "markdown.marp.themes": [
-    "./dist/basic.css"
-  ]
-}
+{ "markdown.marp.themes": ["./dist/basic.css"] }
