@@ -10,6 +10,7 @@
     "build": "run-s build:clean build:webpack",
     "build:clean": "rimraf dist",
     "build:webpack": "webpack --mode development",
+    "postbuild:webpack": "run-s update:config fix:prettier",
     "lint:prettier": "prettier '**/*.{js,json,css,scss,yml,yaml}' --check",
     "fix:prettier": "prettier '**/*.{js,json,css,scss,yml,yaml}' --write",
     "update:config": "node ./bin/update-config.js",
