@@ -7,6 +7,8 @@
     "dev": "run-p dev:*",
     "dev:webpack": "webpack --mode development --watch",
     "dev:watch": "npm-watch",
+    "start:server": "marp -s",
+    "start:preview": "marp -p",
     "build": "run-s build:clean build:webpack",
     "build:clean": "rimraf dist",
     "build:webpack": "webpack --mode development",
@@ -14,6 +16,7 @@
     "lint:prettier": "prettier '**/*.{js,json,css,scss,yml,yaml}' --check",
     "fix:prettier": "prettier '**/*.{js,json,css,scss,yml,yaml}' --write",
     "update:config": "node ./bin/update-config.js",
+    "export": "marp",
     "prepare": "husky install"
   },
   "watch": {
