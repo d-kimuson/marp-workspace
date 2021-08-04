@@ -17,6 +17,7 @@
     "fix:prettier": "prettier '**/*.{js,json,css,scss,yml,yaml}' --write",
     "update:config": "node ./bin/update-config.js",
     "export": "marp",
+    "gen:slide": "./bin/slide_gen.sh",
     "prepare": "husky install"
   },
   "watch": {

@@ -3,7 +3,7 @@
   "assets": {
     "basic.css": {
       "name": "basic.css",
-      "path": "/Users/kaito/Playground/slide/dist/basic.css"
+      "path": "/Users/kaito/slide/dist/basic.css"
     }
   },
   "chunks": { "basic": ["basic.css"] }
