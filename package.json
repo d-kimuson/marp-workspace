@@ -40,6 +40,7 @@
     "axios": "^0.21.1",
     "css-loader": "^6.2.0",
     "dart-sass": "^1.25.0",
+    "dotenv": "^10.0.0",
     "fibers": "^5.0.0",
     "highlight.js": "^11.1.0",
     "loader": "^2.1.1",
