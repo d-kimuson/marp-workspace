@@ -1,5 +1,11 @@
 # Marp Workspace
 
+## ブラウザでプレゼンする
+
+```bash
+$ yarn start:server
+```
+
 ## スライドを編集する
 
 ### VSCode で編集する (Recommended)

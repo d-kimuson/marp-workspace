@@ -10,14 +10,14 @@ import rehypeStringify from "rehype-stringify"
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
-const treeToArray = (basePath) => {
+const toMdFilePaths = (basePath: string): string | string[] => {
   if (basePath.endsWith(".md")) return basePath
 
   const stats = fs.statSync(basePath)
   return stats.isDirectory()
     ? fs
         .readdirSync(basePath)
-        .map((pathName) => treeToArray(path.resolve(basePath, pathName)))
+        .flatMap((pathName) => toMdFilePaths(path.resolve(basePath, pathName)))
     : []
 }
 
@@ -37,26 +37,21 @@ const processor = unified()
   .use(remarkRehype)
   .use(rehypeStringify)
 
-async function extractFrontmatter(content) {
+async function extractFrontmatter(
+  content: string
+): Promise<Record<string, unknown>> {
   const parsed = await processor.process(content)
-  return parsed.data.frontMatter
+  return parsed.data.frontMatter as Record<string, unknown>
 }
 
-/**
- * @name extractMarkdown
- * Frontmatter を取り除いて、本文だけ抜き出す
- *
- * @param {string} content
- * @return {string}
- */
-function extractBody(content) {
+function extractBody(content: string): string {
   return content.replace(/---([\s\S]*?)---/, "")
 }
 
 const targets = fs
   .readdirSync(path.resolve(__dirname, "../slides"))
   .flatMap((pathName) =>
-    treeToArray(path.resolve(__dirname, `../slides/${pathName}`))
+    toMdFilePaths(path.resolve(__dirname, `../slides/${pathName}`))
   )
   .filter((maybePath) => typeof maybePath === "string")
 
@@ -65,7 +60,7 @@ for await (const target of targets) {
   const frontMatter = await extractFrontmatter(content)
   const body = extractBody(content)
 
-  console.log(frontMatter, body)
+  // console.log(frontMatter, body)
 
   /**
    * WIP: マークダウンファイルから docbase への動機処理を書く
@@ -77,3 +72,5 @@ for await (const target of targets) {
    *   - 投稿したメモの id を受け取り、frontmatter を更新する
    */
 }
+
+// console.log(await fetchPost(2034307))

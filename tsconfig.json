@@ -1,0 +1,22 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "module": "ESNext",
+    "lib": ["es2020", "dom"],
+    "paths": {
+      "~/*": ["./bin/*"],
+      "$types/*": ["./types/*"]
+    },
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["bin/**/*", "types/**/*"]
+}
